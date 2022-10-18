@@ -6,17 +6,20 @@
   <body>
     <div id="app">
       <hello-world></hello-world>
+      <hello-world></hello-world>
+      <hello-world></hello-world>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-      Vue.component('hello-world', {
-        template: '<h1>Hello World</h1>',
-      });
+    <script type="module">
+      import HelloWorld from './HelloWorld.js';
 
-      var app = new Vue({
+      const app = new Vue({
         el: '#app',
         data: {},
+        components: {
+          'hello-world': HelloWorld,
+        },
       });
     </script>
   </body>
