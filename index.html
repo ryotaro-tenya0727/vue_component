@@ -5,20 +5,33 @@
   </head>
   <body>
     <div id="app">
-      <hello-world message="Hello Vue"></hello-world>
+      <blog-post
+        v-for="post in posts"
+        v-bind:key="post.id"
+        v-bind:post="post"
+      ></blog-post>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-      Vue.component('hello-world', {
-        template: '<h1>Hello World and {{ message }}</h1>',
-        props: ['message'],
+      Vue.component('blog-post', {
+        template:
+          '<div><h2>{{ post.title }}</h2><p>{{ post.content }}</p></div>',
+        props: ['post'],
       });
 
       var app = new Vue({
         el: '#app',
         data: {
-          inputText: '',
+          posts: [
+            { id: 0, title: 'vue.jsの基礎', content: 'about vue.js...' },
+            { id: 1, title: 'componentの基礎', content: 'about component...' },
+            {
+              id: 2,
+              title: 'Vue CLIの基礎',
+              content: 'about Vue CLIの基礎...',
+            },
+          ],
         },
       });
     </script>
