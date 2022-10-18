@@ -1,0 +1,23 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Component</title>
+  </head>
+  <body>
+    <div id="app">
+      <hello-world></hello-world>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.component('hello-world', {
+        template: '<h1>Hello World</h1>',
+      });
+
+      var app = new Vue({
+        el: '#app',
+        data: {},
+      });
+    </script>
+  </body>
+</html>
