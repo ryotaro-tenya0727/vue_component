@@ -6,20 +6,22 @@
   <body>
     <div id="app">
       <hello-world></hello-world>
-      <hello-world></hello-world>
-      <hello-world></hello-world>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script type="module">
-      import HelloWorld from './HelloWorld.js';
+    <script>
+      Vue.component('hello-world', {
+        template: '<div><p>{{ message }}</p><p>Hello World</p></div>',
+        data: function () {
+          return {
+            message: 'Hello Vue',
+          };
+        },
+      });
 
-      const app = new Vue({
+      var app = new Vue({
         el: '#app',
         data: {},
-        components: {
-          'hello-world': HelloWorld,
-        },
       });
     </script>
   </body>
