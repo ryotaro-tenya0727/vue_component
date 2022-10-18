@@ -5,34 +5,21 @@
   </head>
   <body>
     <div id="app">
-      <button-counter></button-counter>
+      <hello-world message="Hello Vue"></hello-world>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-      Vue.component('button-counter', {
-        template: `<p>
-          カウント:{{ count }} <button v-on:click="countUp">Up</button>
-          <button v-on:click="countDown">Down</button>
-          </p>`,
-        data: function () {
-          return {
-            count: 0,
-          };
-        },
-        methods: {
-          countUp: function () {
-            this.count++;
-          },
-          countDown: function () {
-            this.count--;
-          },
-        },
+      Vue.component('hello-world', {
+        template: '<h1>Hello World and {{ message }}</h1>',
+        props: ['message'],
       });
 
       var app = new Vue({
         el: '#app',
-        data: {},
+        data: {
+          inputText: '',
+        },
       });
     </script>
   </body>
