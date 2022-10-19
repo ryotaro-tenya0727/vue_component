@@ -1,37 +1,43 @@
+<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <title>Component</title>
+    <title>Component Emit</title>
   </head>
   <body>
     <div id="app">
-      <blog-post
-        v-for="post in posts"
-        v-bind:key="post.id"
-        v-bind:post="post"
-      ></blog-post>
+      <p>{{ message }}</p>
+      <emit-event v-on:from-child="receiveMessage"></emit-event>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-      Vue.component('blog-post', {
-        template:
-          '<div><h2>{{ post.title }}</h2><p>{{ post.content }}</p></div>',
-        props: ['post'],
+      Vue.component('emit-event', {
+        template: `<div>
+  <input type="text" v-model="inputText">
+  <button v-on:click="clickEvent">送信ボタン</button>
+  </div>`,
+        data: function () {
+          return {
+            inputText: '',
+          };
+        },
+        methods: {
+          clickEvent: function () {
+            this.$emit('from-child', this.inputText);
+          },
+        },
       });
 
       var app = new Vue({
         el: '#app',
         data: {
-          posts: [
-            { id: 0, title: 'vue.jsの基礎', content: 'about vue.js...' },
-            { id: 1, title: 'componentの基礎', content: 'about component...' },
-            {
-              id: 2,
-              title: 'Vue CLIの基礎',
-              content: 'about Vue CLIの基礎...',
-            },
-          ],
+          message: '',
+        },
+        methods: {
+          receiveMessage: function (message) {
+            this.message = message;
+          },
         },
       });
     </script>
